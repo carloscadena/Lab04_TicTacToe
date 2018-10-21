@@ -3,7 +3,7 @@ using Lab04_TicTacToe.Classes;
 
 namespace Lab04_TicTacToe
 {
-	class Program
+	public class Program
 	{
 		static void Main(string[] args)
 		{
@@ -13,7 +13,7 @@ namespace Lab04_TicTacToe
 
 		static void PlayGame()
 		{
-            // TODO: Instantiate your players
+            // DONE: Instantiate your players
             Console.WriteLine("By what name shall I refer to the first player?");
             string input = Console.ReadLine();
             Player p1 = new Player()
@@ -34,8 +34,23 @@ namespace Lab04_TicTacToe
             Game match = new Game(p1, p2);
 
             // Play the Game
-            match.Play();
+            string final = match.Play().Name;
             // Output the winner
+            if (final != null)
+            {
+                Console.WriteLine($"{final} wins!");
+            }
+            else
+            {
+                Console.WriteLine("We're all losers today");
+            }
+            Console.WriteLine("Would you like to play again? y/n");
+            input = Console.ReadLine();
+            if (input.ToLower() == "y")
+            {
+                PlayGame();
+            }
+
         }
 	}
 }

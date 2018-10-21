@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lab04_TicTacToe.Classes
 {
-	class Game
+	public class Game
 	{
 		public Player PlayerOne { get; set; }
 		public Player PlayerTwo { get; set; }
@@ -28,10 +28,10 @@ namespace Lab04_TicTacToe.Classes
         /// Activate the Play of the game
         /// </summary>
         /// <returns>Winner</returns>
-        public void Play()
+        public Player Play()
         {
 
-            //TODO: Complete this method and utilize the rest of the class structure to play the game.
+            //DONE: Complete this method and utilize the rest of the class structure to play the game.
 
             /*
 			 While there isn't a winner determined or too many turns have been taken,
@@ -41,17 +41,26 @@ namespace Lab04_TicTacToe.Classes
 			 board so the next player can accurately choose. 
 			 Once a winner is determined, display the board and return a winner 
 			 */
-            int turns = 0;
-            while (!CheckForWinner(Board) && turns < 9)
+            int round = 0;
+            Player Winner = null;
+            while (!CheckForWinner(Board) && round < 9)
             {
                 Board.DisplayBoard();
-                turns++;
-                //if (NextPlayer().TakeTurn(Board))
-                //{
-                //    SwitchPlayer()
-                //}
+                round++;
+                NextPlayer().TakeTurn(Board);
+                SwitchPlayer();
+                if (PlayerOne.IsTurn && CheckForWinner(Board))
+                {
+                    Winner = PlayerOne;
+                }
+
+                if (PlayerTwo.IsTurn && CheckForWinner(Board))
+                {
+                    Winner = PlayerTwo;
+                }
 
             }
+            return Winner;
         }
 
 
@@ -87,7 +96,7 @@ namespace Lab04_TicTacToe.Classes
 				string b = Board.GameBoard[p2.Row, p2.Column];
 				string c = Board.GameBoard[p3.Row, p3.Column];
 
-                // TODO:  Determine a winner has been reached. 
+                // DONE:  Determine a winner has been reached. 
                 // return true if a winner has been reached. 
                 if (a.Equals(b) && b.Equals(c))
                 {
