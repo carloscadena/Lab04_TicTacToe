@@ -8,6 +8,7 @@ namespace Lab04_TicTacToe
 		static void Main(string[] args)
 		{
 			Console.WriteLine("Hello World!");
+            PlayGame();
 		}
 
 		static void PlayGame()
@@ -34,7 +35,7 @@ namespace Lab04_TicTacToe
 
             // Play the Game
             match.Play();
-			// Output the winner
-		}
+            // Output the winner
+        }
 	}
 }

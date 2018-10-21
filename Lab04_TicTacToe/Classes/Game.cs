@@ -24,16 +24,16 @@ namespace Lab04_TicTacToe.Classes
 			Board = new Board();
 		}
 
-		/// <summary>
-		/// Activate the Play of the game
-		/// </summary>
-		/// <returns>Winner</returns>
-		public Player Play()
-		{
+        /// <summary>
+        /// Activate the Play of the game
+        /// </summary>
+        /// <returns>Winner</returns>
+        public void Play()
+        {
 
-			//TODO: Complete this method and utilize the rest of the class structure to play the game.
+            //TODO: Complete this method and utilize the rest of the class structure to play the game.
 
-			/*
+            /*
 			 While there isn't a winner determined or too many turns have been taken,
 			 allow each player to see the board and take a turn.
 			 A turn consists of picking a position on the board, and then putting their appropriate marker
@@ -41,15 +41,26 @@ namespace Lab04_TicTacToe.Classes
 			 board so the next player can accurately choose. 
 			 Once a winner is determined, display the board and return a winner 
 			 */
-		}
+            int turns = 0;
+            while (!CheckForWinner(Board) && turns < 9)
+            {
+                Board.DisplayBoard();
+                turns++;
+                //if (NextPlayer().TakeTurn(Board))
+                //{
+                //    SwitchPlayer()
+                //}
+
+            }
+        }
 
 
-		/// <summary>
-		/// Check if winner exists
-		/// </summary>
-		/// <param name="board">current state of the board</param>
-		/// <returns>if winner exists</returns>
-		public bool CheckForWinner(Board board)
+        /// <summary>
+        /// Check if winner exists
+        /// </summary>
+        /// <param name="board">current state of the board</param>
+        /// <returns>if winner exists</returns>
+        public bool CheckForWinner(Board board)
 		{
 			int[][] winners = new int[][]
 			{
@@ -76,10 +87,16 @@ namespace Lab04_TicTacToe.Classes
 				string b = Board.GameBoard[p2.Row, p2.Column];
 				string c = Board.GameBoard[p3.Row, p3.Column];
 
-				// TODO:  Determine a winner has been reached. 
-				// return true if a winner has been reached. 
-			
-			}
+                // TODO:  Determine a winner has been reached. 
+                // return true if a winner has been reached. 
+                if (a.Equals(b) && b.Equals(c))
+                {
+                    // return true if a winner has been reached.
+                    Winner = PlayerOne.IsTurn ? PlayerTwo : PlayerOne;
+                    return true;
+                }
+
+            }
 
 			return false;
 		}
